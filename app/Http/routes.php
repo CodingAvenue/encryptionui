@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
+//@TODO middleware => auth when google authentication is in place
+Route::get('/', 'Encryptor@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
