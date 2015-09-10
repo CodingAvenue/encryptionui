@@ -4,7 +4,7 @@ function encryptFunction() {
     var code_text = result_area.value;
     var secret_passphrase = document.getElementById("secret_passphrase").value;
     
-    var encrypted = CryptoJS.AES.encrypt( code_text, secret_passphrase );
+    var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase);
     var encoded_data = window.btoa(encrypted);
 
     displayData(encoded_data);
