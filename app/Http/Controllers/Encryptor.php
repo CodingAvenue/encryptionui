@@ -11,7 +11,18 @@ class Encryptor extends Controller
     	    return redirect(url('/'));
         }
         $data = Session::get('user_info');
-    	return View::make('encryptor', ['data' => $data]);
+        $encrypted_data = NULL;
+        if (\Input::get('data')) {
+            $encrypted_data = \Input::get('data');
+            $encrypted_data = Encryptions::where('encryption_code', $encrypted_data)->first();
+            $date_logged = $encrypted_data->date_logged;
+            if (strtotime("-2 days") < $date_logged) {
+            	$encrupted_data = "Data has expired. Will not decrypt";
+            } else {
+                $encrypted_data = $encrypted_data->encrypted_data;
+            }
+        }
+    	return View::make('encryptor', ['data' => $data, 'encrypted_data' => $encrypted_data]);
     }
 
     public function track()
@@ -26,7 +37,7 @@ class Encryptor extends Controller
       	    $encryptions = Encryptions::find($id);
       	    $encryptions->encryption_code = $encryption_code;
       	    $encryptions->save();
-      	    echo \Hash::make($encryption_code);
+      	    echo $encryption_code;
         }
     }
 

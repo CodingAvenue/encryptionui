@@ -36,7 +36,7 @@ class Home extends Controller
             	$user_log->save();
 
             	\Session::put('user_info', $result);
-            	return redirect(url("Encryptor"));
+            	return \Redirect::intended("Encryptor");
             }
         } else {
             $url = $google_service->getAuthorizationUri();

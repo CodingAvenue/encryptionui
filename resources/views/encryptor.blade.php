@@ -15,7 +15,7 @@
                             <div id='long_url' style='word-break:break-all'></div>
                         </div>
                         <p>Text to encrypt/decrypt:</p>
-                        <textarea style="padding:10px; width:100%; height:200px;" id="result"></textarea>
+                        <textarea style="padding:10px; width:100%; height:200px;" id="result">{{ $encrypted_data }}</textarea>
                     </div>
                 </div>
             </div>

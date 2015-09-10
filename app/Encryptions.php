@@ -7,10 +7,11 @@ class Encryptions extends Model
     protected $table = "encryptions";
     protected $primaryKey = "encryption_id";
     public $timestamps = FALSE;
-    protected $filleable = [
+    protected $fillable = [
         "author",
         "encrypted_date",
-        "date_logged"
+        "date_logged",
+        "encryption_code"
     ];
 }
 ?>
