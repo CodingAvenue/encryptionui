@@ -14,8 +14,19 @@
         </style>
     </head>
     <body>
-        <h3>Encryption Tool</h3>
-        <hr/>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Encryption Tool</a>
+                </div>
+                @if (Session::has('user_info'))
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Logged in as {{ $name }}</a>
+                    <li><a href="{{url('Logout')}}">Logout</a></li>
+                <ul>
+                @endif
+            </div>
+        </nav>
         <div class="row">    
             @yield('content')
         </div>
