@@ -22,7 +22,7 @@ class Encryptor extends Controller
       	    $encryptions->author = \Input::get('author');
       	    $encryptions->save();
       	    $id = $encryptions->encryption_id;
-      	    $encryption_code = \Hash::make($id);
+      	    $encryption_code = base64_encode($id);
       	    $encryptions = Encryptions::find($id);
       	    $encryptions->encryption_code = $encryption_code;
       	    $encryptions->save();

@@ -13,9 +13,10 @@ function encryptFunction() {
             author: user_email
         },
         function(output) {
-            var long_url = "<b>Long URL: </b>" + base_url + "Encryptor/" + output;
-            $("#result").removeAttr('style');
-            $("#long_url").html(long_url).show();
+            var long_url = base_url + "Encryptor/" + output;
+            var long_url_data = "<b><a href='#' onClick='copyLongUrl()'>Long URL</a>: </b><span id='long_url_origins'>" + long_url + "</span>";
+            $("#url_result").removeAttr('style');
+            $("#long_url").html(long_url_data).show();
         }
     );
 

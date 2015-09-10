@@ -11,7 +11,7 @@
                 </form>     
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-12">
-                        <div class='well' id='result' style='display:none'>
+                        <div class='well' id='url_result' style='display:none'>
                             <div id='long_url' style='word-break:break-all'></div>
                         </div>
                         <p>Text to encrypt/decrypt:</p>
