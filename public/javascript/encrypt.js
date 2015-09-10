@@ -6,6 +6,18 @@ function encryptFunction() {
     
     var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase);
     var encoded_data = window.btoa(encrypted);
+    $.get(
+        base_url + "Track", 
+        {
+            encrypted_data: encoded_data,
+            author: user_email
+        },
+        function(output) {
+            var long_url = "<b>Long URL: </b>" + base_url + "Encryptor/" + output;
+            $("#result").removeAttr('style');
+            $("#long_url").html(long_url).show();
+        }
+    );
 
     displayData(encoded_data);
 

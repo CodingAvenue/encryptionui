@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use Artdarek\OAuth\Facade\OAuth;
 use View;
-use Request;
+use App\UserLogs;
 
 class Home extends Controller
 {
@@ -29,6 +29,12 @@ class Home extends Controller
 
             $result = json_decode($google_service->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
             if (preg_match('/.*.codingavenue.com$|.*.illuminateed.net$|.*.illuminateed.com$/', $result['email'])) {
+
+            	$user_log = new UserLogs();
+            	$user_log->email_address = $result['email'];
+            	$user_log->ip_address = $_SERVER['REMOTE_ADDR'];
+            	$user_log->save();
+
             	\Session::put('user_info', $result);
             	return redirect(url("Encryptor"));
             }
