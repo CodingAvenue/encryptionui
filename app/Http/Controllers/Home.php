@@ -33,6 +33,7 @@ class Home extends Controller
             	$user_log = new UserLogs();
             	$user_log->email_address = $result['email'];
             	$user_log->ip_address = $_SERVER['REMOTE_ADDR'];
+            	$user_log->browser = $_SERVER['HTTP_USER_AGENT'];
             	$user_log->save();
 
             	\Session::put('user_info', $result);
