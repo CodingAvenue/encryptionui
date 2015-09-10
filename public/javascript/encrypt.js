@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    $("#url_result").hide();
+});
 var result_area = document.getElementById("result");
 
 function encryptFunction() {
@@ -14,9 +17,10 @@ function encryptFunction() {
         },
         function(output) {
             var long_url = base_url + "Encryptor?data=" + output;
-            var long_url_data = "<b><a href='#' onClick='copyLongUrl()'>URL</a>: </b><span id='long_url_origins'>" + long_url + "</span>";
             $("#url_result").removeAttr('style');
-            $("#long_url").html(long_url_data).show();
+            $("#long_url_origins").html(long_url).show();
+            $("#copy_trigger").removeAttr("disabled");
+            $("#url_result").show();
         }
     );
 
@@ -43,3 +47,8 @@ function displayData(data) {
     result_area.value = "";
     result_area.value = data;
 }
+
+$("#copy_trigger").zclip({
+   path:zclip_swf,
+   copy:function(){return $("#long_url_origins").html();}
+});
