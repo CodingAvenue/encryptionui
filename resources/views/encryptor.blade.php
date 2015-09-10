@@ -7,7 +7,7 @@
                        <input type="text" class="form-control" id="secret_passphrase" placeholder="Secret Passphrase">
                        <button onclick="return encryptFunction()" class="btn btn-primary">ENCRYPT</button>
                        <button onclick="return decryptFunction()" class="btn btn-warning">DECRYPT</button>
-                       <button disabled class="btn btn-success" id='copy_trigger' >COPY URL</button>
+                       <button disabled onclick="return false" class="btn btn-success" id='copy_trigger' >COPY URL</button>
                    </div>
                 </form>     
                 <div class="row" style="margin-top:10px;">
