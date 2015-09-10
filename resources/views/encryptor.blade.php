@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Encryption tool</title>
-        <link rel='stylesheet' type='text/css' href="{{ asset('/css/bootstrap.min.css') }}" />
-        <style>
-            body {
-                width:850px;
-                margin-left:auto;
-                margin-right:auto;
-                margin-top:20px;
-            }
-        </style>
-    </head>
-    <body>
-        <h3>Encryption Tool</h3>
-        <hr/>
-        <div class="row">    
+@extends('template')
+@section('content')
+    <div class='pull-right'><a href="{{url('Logout')}}">Logout</a></div>
             <div class="col-lg-12">                    
                 <form class="form-inline" role="form">
                    <div class="form-group">
@@ -32,8 +17,4 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </body>
-    <script type='text/javascript' src="{{ asset('/javascript/aes.js')}}"></script>
-    <script type='text/javascript' src="{{ asset('/javascript/encrypt.js') }}"></script>
-</html>
+@endsection
