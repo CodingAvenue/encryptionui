@@ -7,7 +7,10 @@ This tool encrypts and decrypts texts for better and secure communication among 
 * To encrypt messages, use that password and send the generated URL to its intended recipients.
 * To decrypt messages, visit the URL shared with you and use your team password.
 
-### Developer
-Kim Lagonoy
-kim.lagonoy@codingavenue.com
+### Notes
+Looking for a better name for this tool. Suggestions are welcome.
+
+#### Developer
+Kim Lagonoy<br />
+kim.lagonoy@codingavenue.com<br />
 2015
