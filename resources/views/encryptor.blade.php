@@ -1,18 +1,66 @@
 @extends('template')
 @section('content')
+        <style>
+            .spinner {
+                width: 100px;
+            }
+            .spinner input {
+                text-align: right;
+            }
+            .input-group-btn-vertical {
+                position: relative;
+                white-space: nowrap;
+                width: 1%;
+                vertical-align: middle;
+                display: table-cell;
+            }
+            .input-group-btn-vertical > .btn {
+                display: block;
+                float: none;
+                width: 100%;
+                max-width: 100%;
+                padding: 8px;
+                margin-left: -1px;
+                position: relative;
+                border-radius: 0;
+            }
+            .input-group-btn-vertical > .btn:first-child {
+                border-top-right-radius: 4px;
+            }
+            .input-group-btn-vertical > .btn:last-child {
+                margin-top: -2px;
+                border-bottom-right-radius: 4px;
+            }
+            .input-group-btn-vertical i{
+                position: absolute;
+                top: 0;
+                left: 4px;
+            }
+        </style>
             <div class="col-lg-12">                    
                 <form class="form-inline" role="form">
                    <div class="form-group">
                        <label for="exampleInputEmail2">Secret Passphrase</label>
                        <input type="text" class="form-control" id="secret_passphrase" placeholder="Secret Passphrase">
-                       <button onclick="return encryptFunction()" class="btn btn-primary">ENCRYPT</button>
+                       <button id ="encrypt_button" onclick="return encryptFunction()" class="btn btn-primary">ENCRYPT</button>
                        <button onclick="return decryptFunction()" class="btn btn-warning">DECRYPT</button>
                        <button disabled onclick="return false" class="btn btn-success" id='copy_trigger' >COPY URL</button>
+                       <br />
+                       <br />
+                       <b>Expiration</b>
+                       <div class="input-group spinner">
+                           <input type="text" class="form-control" id="expiration" value="2">
+                           <div class="input-group-btn-vertical">
+                               <button class="btn btn-default" type="button"><i class="fa">+</i></button>
+                               <button class="btn btn-default" type="button"><i class="fa">-</i></button>
+                           </div>
+                        </div> day(s)
                    </div>
                 </form>     
                 <div class="row" style="margin-top:10px;">
                     <div class="col-md-12">
-                        <div class='well' id='url_result'>
+                        <div id='loader' style='display:none'><br /><center><img src="{{ asset('/images/Preloader.gif') }}" /><br />Just a sec...</center></div>
+                        <div class='well' id='url_result' style='display:none'>
                             <div id='long_url' style='word-break:break-all'>
                                 <b>URL: </b><span id='long_url_origins'></span>
                             </div>
