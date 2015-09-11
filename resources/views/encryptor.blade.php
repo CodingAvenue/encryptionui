@@ -16,4 +16,15 @@
                     </div>
                 </div>
             </div>
+            <div class='clearfix'></div>
+            <br />
+            <div class='well'>
+                <b>Instructions</b>
+                <ul>
+                    <li>This tool is only usable by Illuminate Education and Coding Avenue employees. Don't use it to send encrypted messages to clients, customers, or other non-employees.</li>
+                    <li>Pick a good passphrase and share it with your team. Do not write it down, do not email it, do not share it. Disclose it in a safe location and remember it.</li>
+                    <li>To encrypt messages, use that password and send the generated URL to its intended recipients.</li>
+                    <li>To decrypt messages, visit the URL shared with you and use your team password.</li>
+                </ul>
+            </div>
 @endsection

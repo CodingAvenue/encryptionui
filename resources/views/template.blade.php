@@ -8,7 +8,7 @@
                 width:850px;
                 margin-left:auto;
                 margin-right:auto;
-                margin-top:20px;
+                margin-top:10px;
             }
         </style>
     </head>
@@ -28,6 +28,10 @@
         </nav>
         <div class="row">    
             @yield('content')
+            <hr />
+            <div class='pull-right'>
+                <small style='color:#929292'>Developed by Kim Lagonoy</small>
+            </div>
         </div>
     </body>
     <script type='text/javascript' src="{{ asset('/javascript/aes.js')}}"></script>
