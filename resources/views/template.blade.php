@@ -20,7 +20,7 @@
                 </div>
                 @if (Session::has('user_info'))
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logged in as {{ $name }}</a>
+                    <li><a href="#">Logged in as {{ $data['given_name'] }}</a>
                     <li><a href="{{url('Logout')}}">Logout</a></li>
                 <ul>
                 @endif
@@ -35,5 +35,7 @@
         </div>
     </body>
     <script type='text/javascript' src="{{ asset('/javascript/aes.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('/javascript/jquery.2.1.3.min.js')}}"></script>
+    <script type='text/javascript' src="{{ asset('/javascript/jquery.zclip.js')}}"></script>
     <script type='text/javascript' src="{{ asset('/javascript/encrypt.js') }}"></script>
 </html>

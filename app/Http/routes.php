@@ -14,6 +14,7 @@
 Route::get('/', 'Home@index');
 Route::get('Auth', 'Home@oauth');
 Route::get('Encryptor', 'Encryptor@index');
+Route::get('Track', 'Encryptor@track');
 Route::get('Logout', 'Encryptor@logout');
 
 Route::controllers([
