@@ -42,6 +42,11 @@ class Encryptor extends Controller
         }
     }
 
+    public function hashPassphrase()
+    {
+        return sha1(\Input::get('passphrase') . env("APP_KEY"));
+    }
+
     public function logout()
     {
     	Session::forget('user_info');
