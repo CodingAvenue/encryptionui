@@ -17,8 +17,8 @@ function encryptFunction() {
     	alert("You need a passphrase");
     	return false;
     }
-    
-    var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase);
+    secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {iteration:1000});
+    var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase.words[(secret_passphrase.words.length - 1)].toString());
     var encoded_data = window.btoa(encrypted);
     $("#loader").removeAttr('style');
     $.get(
@@ -50,8 +50,9 @@ function decryptFunction() {
     try {
         var secret_passphrase = document.getElementById("secret_passphrase").value;
 
+        secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {iteration:1000});
         var decoded_data = window.atob(code_text);
-        var decrypted = CryptoJS.AES.decrypt(decoded_data, secret_passphrase);
+        var decrypted = CryptoJS.AES.decrypt(decoded_data, secret_passphrase.words[(secret_passphrase.words.length - 1)].toString());
         decoded_data = decrypted.toString(CryptoJS.enc.Utf8)
         
     	if (!decoded_data) {
