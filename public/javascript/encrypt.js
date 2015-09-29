@@ -17,39 +17,29 @@ function encryptFunction() {
     	alert("You need a passphrase");
     	return false;
     }
-
+    
+    var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase);
+    var encoded_data = window.btoa(encrypted);
+    $("#loader").removeAttr('style');
     $.get(
-        base_url + "Salt",
+        base_url + "Track", 
         {
-            passphrase: secret_passphrase
+            encrypted_data: encoded_data,
+            author: user_email,
+            expiration: $("#expiration").val()
         },
         function(output) {
-            secret_passphrase = output;
-            var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase);
-            var encoded_data = window.btoa(encrypted);
-            $("#loader").removeAttr('style');
-            $.get(
-                base_url + "Track", 
-                {
-                    encrypted_data: encoded_data,
-                    author: user_email,
-                    expiration: $("#expiration").val()
-                },
-                function(output) {
-                    var long_url = base_url + "Encryptor?data=" + output;
-                    $("#url_result").removeAttr('style');
-                    $("#long_url_origins").html(long_url).show();
-                    $("#copy_trigger").removeAttr("disabled");
-                    $("#url_result").removeAttr("style");
-                    $("#url_result").show();
-                    $("#loader").hide();
-                }
-            );
-
-            displayData(encoded_data);
+            var long_url = base_url + "Encryptor?data=" + output;
+            $("#url_result").removeAttr('style');
+            $("#long_url_origins").html(long_url).show();
+            $("#copy_trigger").removeAttr("disabled");
+            $("#url_result").removeAttr("style");
+            $("#url_result").show();
+            $("#loader").hide();
         }
     );
-    
+
+    displayData(encoded_data);
 
     return false;
 }
@@ -59,25 +49,17 @@ function decryptFunction() {
     var code_text = result_area.value;
     try {
         var secret_passphrase = document.getElementById("secret_passphrase").value;
-        $.get(
-            base_url + "Salt",
-            {
-                passphrase: secret_passphrase
-            },
-            function(output) {
-                secret_passphrase = output;
-                var decoded_data = window.atob(code_text);
-                var decrypted = CryptoJS.AES.decrypt(decoded_data, secret_passphrase);
-                decoded_data = decrypted.toString(CryptoJS.enc.Utf8);
-                
-                if (!decoded_data) {
-                    alert("Cannot decrypt");
-                    displayData(code_text);
-                    return false;
-                }
-                displayData(decoded_data);
-            }
-        );
+
+        var decoded_data = window.atob(code_text);
+        var decrypted = CryptoJS.AES.decrypt(decoded_data, secret_passphrase);
+        decoded_data = decrypted.toString(CryptoJS.enc.Utf8)
+        
+    	if (!decoded_data) {
+    	    alert("Cannot decrypt");
+    	    displayData(code_text);
+    	    return false;
+        }
+        displayData(decoded_data);
 
         return false;
     } catch (err) {
