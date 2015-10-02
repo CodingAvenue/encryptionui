@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
 });
 var result_area = document.getElementById("result");
-var iterations = 100000;
+var data_iterations = 500;
 
 function encryptFunction() {
     $("#url_result").hide();
@@ -18,7 +18,7 @@ function encryptFunction() {
     	alert("You need a passphrase");
     	return false;
     }
-    secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {iteration:iterations});
+    secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {keySize: 512/32,iterations: data_iterations});
     var encrypted = CryptoJS.AES.encrypt(code_text, secret_passphrase.words[(secret_passphrase.words.length - 1)].toString());
     var encoded_data = window.btoa(encrypted);
     $("#loader").removeAttr('style');
@@ -51,7 +51,7 @@ function decryptFunction() {
     try {
         var secret_passphrase = document.getElementById("secret_passphrase").value;
 
-        secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {iteration:iterations});
+        secret_passphrase = CryptoJS.PBKDF2(secret_passphrase, "IlluminateCrypt0!!", {keySize: 512/32,iterations: data_iterations});
         var decoded_data = window.atob(code_text);
         var decrypted = CryptoJS.AES.decrypt(decoded_data, secret_passphrase.words[(secret_passphrase.words.length - 1)].toString());
         decoded_data = decrypted.toString(CryptoJS.enc.Utf8)
